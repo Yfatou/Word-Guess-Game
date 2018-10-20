@@ -15,13 +15,12 @@ var wordGame = {
     wins: 0,  //at the beginning of the game, wins and losses are intialized at 0
     losses: 0, 
     initializeUnderline: function() {//create the word to guess with underlines for each letter
-        console.log("NORG in Begin Init underline: " + numberOfRemainingGuesses)
         for (var i=0; i < currentWord.length; i++){
            rightGuessWord[i] = "_"; //the number to guess with underlines representing the letters
         }
     },
 
-    checkForWins: function() {
+   checkForWins: function() {
         var strConvertType = "";//convert the array with the guessed word into a string
                                 //to compare it
         for (var i = 0; i < currentWord.length; i++) {
@@ -34,8 +33,8 @@ var wordGame = {
         }
     },
 
-    checkForLosses: function() { //if there is no more numberOfRemainingGuesses left, the player lost and theh game is reset
-        if (numberOfRemainingGuesses = 0){
+    checkForLosses: function() { //if there is no more numberOfRemainingGuesses left, the player lost and the game is reset
+        if (numberOfRemainingGuesses == 0){
             alert("You've lost!");
             this.losses++;
             this.resetGame();
@@ -45,21 +44,15 @@ var wordGame = {
     checkComputerGuessWordwithKeypressedLetter: function() { //compare the key pressed letter with the letters in the word to find
         var isFound = false; 
         for (var i = 0; i < currentWord.length; i++) {
-            if (currentWord[i].indexOf(wordGame.inputKeypressed) > -1){//check if the letter pressed by the player exists in the currentWord
-                console.log("letter in the current word");
-                console.log(numberOfRemainingGuesses);
+            if (currentWord[i].indexOf(wordGame.inputKeypressed) >= 0){//check if the letter pressed by the player exists in the currentWord
                 rightGuessWord[i] = wordGame.inputKeypressed;
                 isFound = true;
-                console.log("NRG in CCGWWKPL after: " + numberOfRemainingGuesses);
             }
         }
-            //If the letter not in the word to guess, it is added to the wrongGuessWord list and displayed
+            //If the letter is not in the word to guess, it is added to the wrongGuessWord list and displayed
             if (isFound == false && wrongGuessWord.indexOf(wordGame.inputKeypressed) === -1) {
-                console.log("letter not in the current word");
                 wrongGuessWord += " " + wordGame.inputKeypressed;
-                console.log("number of remaining guesse before decrement: " + numberOfRemainingGuesses);
-                numberOfRemainingGuesses = numberOfRemainingGuesses - 1; //decrement the numberOfRemainingGuesses NOT WORKING!!
-                console.log("number of remaining guesse after decrement: " + numberOfRemainingGuesses);
+                numberOfRemainingGuesses--; //decrement the numberOfRemainingGuesses
         }
     },
 
@@ -80,7 +73,6 @@ var wordGame = {
         rightGuessWord = [];
         inputKeypressed = "";
         currentWord = (randomWords[Math.floor(Math.random() * randomWords.length)]).toLowerCase();
-        console.log("currentWord in reset game: " + currentWord);
         this.initializeUnderline();
         this.display();
     },
@@ -89,33 +81,25 @@ var wordGame = {
         //if it is the right letter guess, the rightGuessWord will display in current-word div
         document.getElementById("current-word").textContent = rightGuessWord.join(" ");
 
-
         //the number of remaining guesses will decrement if it is the wrong letter key pressed.
         // and will display in the guesses-remaining div
-        console.log("NORG displayed: " + numberOfRemainingGuesses);
         document.getElementById("remaining-guesses").textContent = numberOfRemainingGuesses;
-        console.log("NORG after display: " + numberOfRemainingGuesses);
 
-        //the wrong letter guess will be display  in the guessed-letters div.
+        //the wrong letter guess will be displayed in the guessed-letters div.
         document.getElementById("guessed-letters").textContent = wrongGuessWord;
 
-        //everytime if a letter is pressed, it checks for wins and displays the total wins
-        //in the showWins div
+        //everytime if a letter is pressed, it checks for wins and displays the total wins in the showWins div
         this.checkForWins();
         document.getElementById("showWins").textContent = this.wins;
 
-        //everytime if a letter is pressed, it checks for losses and displays the total wins
-        //in the showLosses div
+        //everytime if a letter is pressed, it checks for losses and displays the total wins in the showLosses div
         this.checkForLosses();
         document.getElementById("showLosses").textContent = this.losses;
     },
 
     playGame: function() {//Play function
-        console.log("NORG in play before call CCGWWKPL: " + numberOfRemainingGuesses)
         this.checkComputerGuessWordwithKeypressedLetter();
-        console.log("NORG in play after call CCGWWKPL: " + numberOfRemainingGuesses)
         this.display();
-        console.log("NORG in play after call display: " + numberOfRemainingGuesses)
     }
 };
 
@@ -123,19 +107,15 @@ var wordGame = {
 function initialize_Game() {//initialisation of the game
     currentWord = (randomWords[Math.floor(Math.random() * randomWords.length)]).toLowerCase(); 
     console.log(currentWord);
-    console.log("NORG in initGame: " + numberOfRemainingGuesses);
     wordGame.initializeUnderline();
 }
 
 
 document.onkeyup = function(event) {
-    console.log("NORG in begin onkeyup: " + numberOfRemainingGuesses)
     var letter = event.key.toLowerCase();     
     if (wordGame.allLetter(letter)){//If the entry is a letter
         wordGame.inputKeypressed = letter;//it is stocked in the keypressed variable
-        console.log("NORG in onkeyup before call play: " + numberOfRemainingGuesses)
         wordGame.playGame();//we call the play game function
-        console.log("NORG in onkeyup after call play: " + numberOfRemainingGuesses)
     } else {//the player type an entry that is not a letter
         alert("Invalid Entry, a letter only!!");
     }

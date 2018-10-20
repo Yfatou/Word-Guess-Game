@@ -1,5 +1,5 @@
 body{
-    background-color: gray;
+    background: url("/Word-Guess-Game/assets/images/pow-star.png");
   
 }
 
@@ -34,7 +34,7 @@ h5{
 #guessed-letters{
     font-size: 30px;
     font-weight: bold;
-    color: whitesmoke;
+    color: black;
 }
 
 @media(max-width: 660px){
