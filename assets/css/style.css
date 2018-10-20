@@ -1,0 +1,50 @@
+body{
+    background-color: gray;
+  
+}
+
+h3{
+    font-family: 'Lobster', cursive;
+    font-weight: bolder;
+    text-align: center;
+    border-bottom: dotted;
+}
+h5{
+    font-family: 'Catamaran', sans-serif;
+    font-size: 30px;
+}
+
+.game-title{
+    /*padding-top: 40px;*/
+    font-size: 80px;
+    font-family: 'Asset', cursive;
+    font-family: 'Diplomata SC', cursive;
+    border-bottom: solid 2px;
+}
+
+#game-section{
+    border-style: dashed;
+    margin-top: 10px;
+    padding: 25px;
+    padding-top: 0px;
+    height: 500px;;
+}
+
+#showWins, #showLosses, #current-word, #remaining-guesses,
+#guessed-letters{
+    font-size: 30px;
+    font-weight: bold;
+    color: whitesmoke;
+}
+
+@media(max-width: 660px){
+    .game-title{
+        height: 40%;
+    }
+}
+
+@media(max-width: 767px){
+    .img-thumbnail{
+        width: 100%;
+    } 
+}

@@ -4,20 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Psychic Game</title>
-
+    <title>Word Guess Game</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!--css sheet-->
-    <link rel="stylesheet" href="/Psychic-Game/assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Asset|Diplomata+SC" rel="stylesheet">
 </head>
-<body>
-    
-    <h1>PSYCHIC GAME</h1>
 
-    <h3>PRESS ANY KEY TO GET STARTED</h3>
+<!--Initialize the game, the first time the page is loaded-->
+<body onload="initialize_Game()">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="game-title text-center font-italic">LE PENDU</h1>
+                <h5 class="translate-title text-center font-italic">aka HANGMAN</h5>
+            </div>
+        </div>
+        <div class="row">
+            <!--<div class="col-md-12">-->
+                <div class="col-md-3">
+                    <img src="assets/images/pendu.jpeg" class="img-thumbnail">
+                </div>
+                <div class="col-md-6">
+                <div id="game-section">
+                    <h3>PRESS ANY KEY TO GET STARTED!</h3>
+                    <div>
+                        <h4 class="section-title">WINS</h4>
+                        <!-- div to display the wins -->
+                        <div id="showWins"></div>
+                    </div>
+                    <div>
+                        <h4 class="section-title">LOSSES</h4>
+                        <!--Div to display the losses -->
+                        <div id="showLosses"></div>
+                    </div>
+                    <div id="current-word-section">
+                        <h4 class="section-title">CURRENT WORD</h4>
+                        <!-- The div to display the current word and the already guessed letters-->
+                        <div id="current-word"></div>
+                    </div>
+                    <div id="remaining-guesses-section">
+                        <h4 class="section-title">NUMBER OF GUESSES REMAINING</h4>
+                        <!-- Div for the remaining guesses-->
+                        <div id="remaining-guesses"></div>
+                    </div>
+                    <div id="guessed-letters-section">
+                        <h4 class="section-title">LETTERS ALREADY GUESSED</h4>
+                        <!-- Div for the letters already guessed (wrong letters)-->
+                        <div id="guessed-letters"></div>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-3">
+                    <img src="assets/images/pendu.jpeg" class="img-thumbnail">
+                </div>
+            <!--</div>-->
+        </div>
+    </div>
+
+
+    <script src="assets/javascript/game.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 
 </body>
 
-<script src="/Psychic-Game/assets/javascript/game.js"></script>
-
-
 </html>
+
+
